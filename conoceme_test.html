@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Quién me conoce más? ✦</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+:root{--ink:#f7f3ff;--muted:#b8b0d7;--pink:#ff5db1;--purple:#9b7bff;--cyan:#66e7ff;--panel:rgba(27,20,58,.78)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;color:var(--ink);font-family:'DM Sans',sans-serif;background:#0b0820;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-3;background:radial-gradient(ellipse at 15% 10%,#43206f 0,transparent 38%),radial-gradient(ellipse at 85% 22%,#182c68 0,transparent 35%),radial-gradient(ellipse at 50% 100%,#351344 0,transparent 45%),#0b0820}
+#stars{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}.star{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;opacity:.65;animation:twinkle 3s infinite ease-in-out}.star:nth-child(3n){animation-delay:1s}.star:nth-child(4n){background:var(--cyan);animation-duration:4s}
+@keyframes twinkle{0%,100%{opacity:.2;transform:scale(.7)}50%{opacity:1;transform:scale(1.4)}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-12px) rotate(4deg)}}
+@keyframes glow{0%,100%{box-shadow:0 0 18px #a36aff33}50%{box-shadow:0 0 34px #ff5db155}}
+@keyframes enter{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+*{transition:border-color .2s,background .2s,transform .2s}
+header{max-width:1120px;margin:auto;padding:24px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.5px}.logo{display:grid;place-items:center;width:40px;height:40px;border-radius:14px;background:linear-gradient(135deg,var(--pink),var(--purple));box-shadow:0 6px 25px #b55cff55;font-size:21px}
+.pill{border:1px solid #ffffff25;border-radius:999px;padding:8px 13px;color:#d9d2f3;font-size:12px;background:#ffffff08}
+main{max-width:960px;margin:0 auto;padding:30px 20px 70px}.hero{text-align:center;padding:30px 0 25px;animation:enter .8s both}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;border:1px solid #ff5db14d;background:#ff5db112;color:#ff9bce;padding:8px 13px;border-radius:99px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(38px,7vw,70px);line-height:1.02;letter-spacing:-3px;margin:22px 0 15px}h1 .gradient{background:linear-gradient(95deg,#fff 5%,#ff8bc9 40%,#9a8cff 70%,#7deaff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.subtitle{color:var(--muted);font-size:16px;line-height:1.7;max-width:580px;margin:0 auto}.floating{display:inline-block;animation:float 4s ease-in-out infinite;font-size:28px;margin:0 5px}
+.tabs{display:flex;justify-content:center;gap:8px;margin:25px 0 28px;flex-wrap:wrap}.tab{cursor:pointer;border:1px solid #ffffff20;color:#c9c1e5;background:#ffffff08;padding:12px 18px;border-radius:14px;font:600 14px 'DM Sans';}.tab.active{background:linear-gradient(120deg,#ff5db12b,#8d70ff30);border-color:#d28aff88;color:white;box-shadow:0 0 22px #a56cff20}
+.layout{display:grid;grid-template-columns:1fr .72fr;gap:18px;align-items:start}.panel{background:var(--panel);border:1px solid #ffffff1c;border-radius:24px;padding:24px;backdrop-filter:blur(18px);box-shadow:0 18px 70px #0002;animation:enter .6s both}.panel h2{font-family:'Space Grotesk';font-size:21px;margin:0 0 7px}.desc{color:var(--muted);font-size:13px;line-height:1.6;margin:0 0 20px}
+label{display:block;font-size:12px;font-weight:700;color:#ded7f5;margin:15px 0 7px}input,textarea,select{width:100%;background:#0e0a28;border:1px solid #ffffff24;border-radius:12px;padding:13px 14px;color:white;font:14px 'DM Sans';outline:none}input:focus,textarea:focus,select:focus{border-color:#b08aff;box-shadow:0 0 0 3px #9b7bff20}textarea{resize:vertical;min-height:65px}input::placeholder,textarea::placeholder{color:#726b92}
+.q-editor{padding:15px;margin-top:13px;border-radius:16px;border:1px solid #ffffff16;background:#ffffff05}.q-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}.q-num{color:#bba7ff;font-size:11px;font-weight:700;letter-spacing:1px}.tiny{border:0;background:none;color:#ff9bcf;cursor:pointer;font-size:12px}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:8px}.options input{padding:10px;font-size:12px}.correct-wrap{display:flex;align-items:center;gap:8px;color:#bcb4d9;font-size:11px;margin-top:10px}.correct-wrap select{width:auto;flex:1;padding:8px;font-size:12px}
+.btn{cursor:pointer;border:0;border-radius:14px;padding:14px 18px;font:700 14px 'DM Sans';color:#130b2a;background:linear-gradient(100deg,#ff85c5,#b59aff 55%,#78eaff);box-shadow:0 9px 25px #b56aff2c;width:100%;margin-top:16px}.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}.btn.secondary{background:#ffffff0c;color:#eee8ff;border:1px solid #ffffff22;box-shadow:none}.btn.small{width:auto;margin:0;padding:10px 13px;font-size:12px}
+.preview{position:sticky;top:18px;overflow:hidden}.preview:before{content:"✦";position:absolute;right:18px;top:12px;font-size:80px;color:#b69cff13;pointer-events:none}.preview-icon{width:64px;height:64px;border-radius:22px;display:grid;place-items:center;font-size:30px;background:linear-gradient(135deg,#ff5db133,#8d70ff33);border:1px solid #ffffff1b;margin-bottom:18px;animation:float 4s infinite ease-in-out}.preview h3{font-family:'Space Grotesk';font-size:25px;line-height:1.1;margin:0 0 10px}.preview p{color:var(--muted);font-size:13px;line-height:1.6}.mini-stats{display:flex;gap:8px;margin:18px 0}.stat{flex:1;padding:12px;border-radius:13px;background:#ffffff08;border:1px solid #ffffff12}.stat strong{display:block;font-size:20px;font-family:'Space Grotesk'}.stat span{font-size:10px;color:var(--muted)}
+footer{text-align:center;color:#777092;font-size:11px;padding:25px}
+#playArea{max-width:650px;margin:auto}.quiz-card{animation:enter .4s both}.progress-row{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-bottom:10px}.progress{height:6px;background:#ffffff15;border-radius:9px;overflow:hidden;margin-bottom:23px}.progress span{height:100%;display:block;background:linear-gradient(90deg,var(--pink),var(--purple),var(--cyan));border-radius:9px;width:0;transition:width .4s}.answer-list{display:grid;gap:10px;margin-top:20px}.answer{cursor:pointer;text-align:left;background:#ffffff08;border:1px solid #ffffff20;color:#f7f3ff;padding:15px;border-radius:14px;font:500 14px 'DM Sans'}.answer:hover{transform:translateX(3px);border-color:#b08aff;background:#a78bfa18}.answer.chosen{border-color:#ff8bc9;background:#ff5db121}.answer:disabled{cursor:default}.result{text-align:center}.score-ring{width:135px;height:135px;margin:25px auto;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at center,#1b143a 57%,transparent 59%),conic-gradient(var(--pink) var(--score,0%),#ffffff17 0);animation:glow 2.5s infinite}.score-ring strong{font:700 32px 'Space Grotesk'}.hidden{display:none!important}.note{font-size:11px;color:#8f87ae;line-height:1.5;margin-top:12px}
+@media(max-width:760px){header{padding:18px 16px}main{padding:15px 14px 45px}.layout{grid-template-columns:1fr}.preview{position:static;order:-1}.hero{padding:25px 0 10px}h1{letter-spacing:-2px}.panel{padding:19px}.preview .mini-stats{margin-bottom:0}.preview p{margin-bottom:0}}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<header><div class="brand"><div class="logo">✦</div><span>CONOCE<span style="color:#ff8bc9">ME</span></span></div><div class="pill">✧ Tu gente, tus secretos</div></header>
+<main>
+<section class="hero">
+<div class="eyebrow">✦ EL RETO DEFINITIVO ✦</div>
+<h1>¿Quién me<br><span class="gradient">conoce más?</span></h1>
+<p class="subtitle">Crea tu propio test, compártelo con tus amigos y descubre quién de verdad presta atención a los detalles. <span class="floating">♡</span></p>
+</section>
+<div class="tabs"><button class="tab active" id="createTab" onclick="showCreate()">✧ Crear mi test</button><button class="tab" id="takeTab" onclick="showTake()">♡ Responder un test</button></div>
+
+<section id="createArea" class="layout">
+<div class="panel">
+<h2>Personaliza tu reto</h2><p class="desc">Ponle tu estilo y crea preguntas que solo tus verdaderos amigos sabrían responder.</p>
+<label for="creator">¿Cómo te llamas?</label><input id="creator" maxlength="35" placeholder="Ej. Jerson">
+<label for="title">Nombre de tu test</label><input id="title" maxlength="55" placeholder="¿Qué tanto me conoces?">
+<label for="intro">Una frase para tus amigos</label><textarea id="intro" maxlength="140" placeholder="A ver quién sí me conoce de verdad..."></textarea>
+<div id="questions"></div>
+<button class="btn secondary" onclick="addQuestion()" id="addBtn">＋ Añadir pregunta</button>
+<button class="btn" onclick="makeLink()">CREAR MI TEST Y OBTENER ENLACE ↗</button>
+<div id="linkResult" class="hidden">
+<label>Tu enlace para compartir</label><input id="shareLink" readonly>
+<button class="btn" onclick="copyLink()">⧉ Copiar enlace</button>
+<p class="note" id="linkNote">Si lo abres como archivo en tu computador, el enlace solo funcionará en este mismo archivo. Para compartirlo con todos, primero publica la página en internet.</p>
+</div>
+</div>
+<aside class="panel preview">
+<div class="preview-icon">💌</div><h3 id="previewTitle">Tu test.<br>Tus reglas.</h3><p id="previewText">Diseña un reto con tu nombre, preguntas y respuestas. Luego reta a tus amigos a ver quién logra la puntuación más alta.</p>
+<div class="mini-stats"><div class="stat"><strong id="qCount">3</strong><span>PREGUNTAS</span></div><div class="stat"><strong>∞</strong><span>AMIGOS</span></div><div class="stat"><strong>100%</strong><span>DIVERSIÓN</span></div></div>
+<div style="border-top:1px solid #ffffff16;padding-top:16px;margin-top:18px;color:#c9baff;font-size:12px">✦ Tip de creador</div><p style="margin-bottom:0">Mezcla preguntas fáciles con otras inesperadas. ¡Así el resultado será más divertido!</p>
+</aside>
+</section>
+
+<section id="playArea" class="hidden">
+<div class="panel" id="playerIntro"><div class="preview-icon">💫</div><h2 id="playTitle">El reto de alguien especial</h2><p class="desc" id="playIntro">¿Crees que conoces a esta persona? ¡Demuéstralo!</p><label for="playerName">Tu nombre o apodo</label><input id="playerName" maxlength="35" placeholder="Escribe tu nombre"><button class="btn" onclick="startQuiz()">¡ACEPTO EL RETO! →</button></div>
+<div class="panel hidden quiz-card" id="questionCard"><div class="progress-row"><span id="questionCount">PREGUNTA 1 DE 3</span><span id="scoreNow">0 puntos</span></div><div class="progress"><span id="progressFill"></span></div><h2 id="questionText">Pregunta aquí</h2><div id="answerList" class="answer-list"></div><button id="nextBtn" class="btn hidden" onclick="nextQuestion()">Siguiente pregunta →</button></div>
+<div class="panel hidden result" id="resultCard"><div class="preview-icon" style="margin:0 auto">🏆</div><h2 id="resultTitle">¡Terminaste!</h2><div class="score-ring" id="scoreRing"><strong id="scoreFinal">0/3</strong></div><h3 id="resultMessage">¡Buen intento!</h3><p id="resultDetail" class="desc"></p><button class="btn" onclick="restartQuiz()">Volver a intentarlo ↻</button><button class="btn secondary" onclick="showCreate()">Crear mi propio test ✦</button></div>
+</section>
+</main><footer>Hecho para poner a prueba las amistades · CONÓCEME ✦</footer>
+<script>
+const $=id=>document.getElementById(id);
+let questions=[],quiz=null,current=0,score=0,playerAnswers=[];
+function seedQuestions(){questions=[
+{q:"¿Cuál es mi comida favorita?",a:["Pizza","Hamburguesa","Salchipapa","Pasta"],correct:0},
+{q:"¿Qué prefiero hacer en mi tiempo libre?",a:["Jugar","Escuchar música","Ver películas","Salir con amigos"],correct:1},
+{q:"¿Cuál sería mi plan perfecto?",a:["Una aventura","Dormir todo el día","Salir a comer","Quedarme en casa"],correct:2}
+];renderQuestions()}
+function renderQuestions(){
+$('questions').innerHTML='';
+questions.forEach((item,i)=>{
+let div=document.createElement('div');div.className='q-editor';
+div.innerHTML=`<div class="q-top"><span class="q-num">PREGUNTA ${i+1}</span>${questions.length>1?`<button class="tiny" onclick="removeQuestion(${i})">Eliminar ×</button>`:''}</div><label>Escribe tu pregunta</label><input maxlength="120" placeholder="Ej. ¿Cuál es mi color favorito?" value="${esc(item.q)}" oninput="questions[${i}].q=this.value;updatePreview()"><label>Opciones de respuesta</label><div class="options">${item.a.map((v,j)=>`<input maxlength="55" placeholder="Opción ${j+1}" value="${esc(v)}" oninput="questions[${i}].a[${j}]=this.value">`).join('')}</div><div class="correct-wrap">Respuesta correcta <select onchange="questions[${i}].correct=Number(this.value)">${item.a.map((v,j)=>`<option value="${j}" ${item.correct===j?'selected':''}>Opción ${j+1}</option>`).join('')}</select></div>`;
+$('questions').appendChild(div);
+});
+$('qCount').textContent=questions.length;$('addBtn').disabled=questions.length>=10;$('addBtn').style.opacity=questions.length>=10?.45:1;updatePreview();
+}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function addQuestion(){if(questions.length>=10)return;questions.push({q:'',a:['','','',''],correct:0});renderQuestions()}
+function removeQuestion(i){questions.splice(i,1);renderQuestions()}
+function updatePreview(){$('previewTitle').innerHTML=esc($('title').value||'Tu test.')+'<br><span style="color:#ff8bc9">Tu gente.</span>';$('previewText').textContent=$('intro').value||'Diseña un reto con tu nombre, preguntas y respuestas. Luego reta a tus amigos a ver quién logra la puntuación más alta.'}
+$('title').addEventListener('input',updatePreview);$('intro').addEventListener('input',updatePreview);
+function showCreate(){$('createArea').classList.remove('hidden');$('playArea').classList.add('hidden');$('createTab').classList.add('active');$('takeTab').classList.remove('active')}
+function showTake(){$('createArea').classList.add('hidden');$('playArea').classList.remove('hidden');$('createTab').classList.remove('active');$('takeTab').classList.add('active');$('playerIntro').classList.remove('hidden');$('questionCard').classList.add('hidden');$('resultCard').classList.add('hidden');if(!quiz){$('playTitle').textContent='Responde un test';$('playIntro').textContent='Abre el enlace que te compartieron para responder un test. Si ya tienes un enlace, pégalo en la barra de direcciones de tu navegador.';}}
+function makeLink(){
+const creator=$('creator').value.trim();if(!creator){alert('Escribe tu nombre para que tus amigos sepan de quién es el test.');$('creator').focus();return}
+if(questions.length<1){alert('Añade al menos una pregunta.');return}
+for(let i=0;i<questions.length;i++){let q=questions[i];if(!q.q.trim()||q.a.some(a=>!a.trim())){alert('Completa la pregunta '+(i+1)+' y sus cuatro opciones.');return}}
+quiz={creator,title:$('title').value.trim()||'¿Qué tanto me conoces?',intro:$('intro').value.trim()||'¡A ver quién me conoce de verdad!',questions};
+let encoded=btoa(unescape(encodeURIComponent(JSON.stringify(quiz))));let base=location.href.split('#')[0];let link=base+'#test='+encoded;
+$('shareLink').value=link;$('linkResult').classList.remove('hidden');$('linkResult').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+async function copyLink(){try{await navigator.clipboard.writeText($('shareLink').value);$('linkNote').textContent='¡Enlace copiado! Pégalo donde quieras compartirlo.'}catch(e){$('shareLink').select();document.execCommand('copy');$('linkNote').textContent='Selecciona y copia el enlace para compartirlo.'}}
+function loadFromHash(){try{let m=location.hash.match(/test=([^&]+)/);if(!m)return;let data=JSON.parse(decodeURIComponent(escape(atob(m[1]))));if(!data.questions?.length)return;quiz=data;showTake();$('playTitle').textContent=data.title;$('playIntro').textContent=(data.creator?'Test creado por '+data.creator+'. ':'')+(data.intro||'¿Quién conoce más a esta persona?');document.title=data.title+' | CONÓCEME';}catch(e){console.warn('No se pudo leer el test compartido.')}}
+function startQuiz(){if(!quiz){alert('Para responder, abre el enlace completo de un test que te compartieron.');return}if(!$('playerName').value.trim()){alert('Escribe tu nombre o apodo antes de empezar.');return}current=0;score=0;playerAnswers=[];$('playerIntro').classList.add('hidden');$('resultCard').classList.add('hidden');$('questionCard').classList.remove('hidden');renderQuestion()}
+function renderQuestion(){let q=quiz.questions[current];$('questionCount').textContent=`PREGUNTA ${current+1} DE ${quiz.questions.length}`;$('scoreNow').textContent=score+' puntos';$('progressFill').style.width=(current/quiz.questions.length*100)+'%';$('questionText').textContent=q.q;$('answerList').innerHTML='';$('nextBtn').classList.add('hidden');q.a.forEach((a,i)=>{let b=document.createElement('button');b.className='answer';b.textContent=['A','B','C','D'][i]+'.  '+a;b.onclick=()=>chooseAnswer(i,b);$('answerList').appendChild(b)})}
+function chooseAnswer(i,button){let q=quiz.questions[current];[...$('answerList').children].forEach(b=>b.disabled=true);if(i===Number(q.correct)){score++;button.classList.add('chosen');button.style.borderColor='#6deac7';button.style.background='#43d9ac20'}else{button.style.borderColor='#ff7ba9';button.style.background='#ff5d8c20';[...$('answerList').children][Number(q.correct)].style.borderColor='#6deac7'}playerAnswers.push(i);$('scoreNow').textContent=score+' puntos';$('progressFill').style.width=((current+1)/quiz.questions.length*100)+'%';$('nextBtn').textContent=current===quiz.questions.length-1?'Ver mi resultado ✦':'Siguiente pregunta →';$('nextBtn').classList.remove('hidden')}
+function nextQuestion(){current++;if(current>=quiz.questions.length){showResult();return}renderQuestion()}
+function showResult(){$('questionCard').classList.add('hidden');$('resultCard').classList.remove('hidden');let total=quiz.questions.length,pct=Math.round(score/total*100);$('scoreFinal').textContent=score+'/'+total;$('scoreRing').style.setProperty('--score',pct+'%');$('resultTitle').textContent='¡Reto completado, '+$('playerName').value.trim()+'!';$('resultMessage').textContent=pct===100?'¡Eres de su círculo más cercano!':pct>=70?'¡Sí que prestas atención!':pct>=40?'Vas por buen camino':'¡Toca conocerse un poquito más!';$('resultDetail').textContent=`Acertaste ${score} de ${total} preguntas (${pct}%). Comparte el reto con tus amigos y mira quién consigue la puntuación más alta.`}
+function restartQuiz(){$('playerIntro').classList.remove('hidden');$('questionCard').classList.add('hidden');$('resultCard').classList.add('hidden')}
+for(let i=0;i<70;i++){let s=document.createElement('i');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=Math.random()*4+'s';s.style.opacity=(.2+Math.random()*.7);$('stars').appendChild(s)}
+seedQuestions();loadFromHash();
+</script>
+</body></html>
